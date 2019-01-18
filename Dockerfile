@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-devel-ubuntu16.04
+FROM nvidia/cuda:9.0-devel-ubuntu16.04
 
 LABEL maintainer="Hyeonsu Lyu <hslyu@unist.ac.kr>"
 
@@ -12,15 +12,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # apt-utils install
 		apt-utils \
         build-essential \
-        cuda-command-line-tools-10-0 \
-        cuda-cublas-10-0 \
-        cuda-cufft-10-0 \
-        cuda-curand-10-0 \
-        cuda-cusolver-10-0 \
-        cuda-cusparse-10-0 \
+        cuda-command-line-tools-9-0 \
+        cuda-cublas-9-0 \
+        cuda-cufft-9-0 \
+        cuda-curand-9-0 \
+        cuda-cusolver-9-0 \
+        cuda-cusparse-9-0 \
         curl \
-        libcudnn7=7.4.2.24-1+cuda10.0 \
-        libnccl2=2.3.7-1+cuda10.0 \
+        libcudnn7=7.2.1.38-1+cuda9.0 \
+        libnccl2=2.2.13-1+cuda9.0 \
         libfreetype6-dev \
         libhdf5-serial-dev \
         libpng12-dev \
@@ -38,9 +38,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
-        apt-get install nvinfer-runtime-trt-repo-ubuntu1604-5.0.2-ga-cuda10.0 && \
+        apt-get install nvinfer-runtime-trt-repo-ubuntu1604-4.0.1-ga-cuda9.0 && \
         apt-get update && \
-        apt-get install libnvinfer5=5.0.2-1+cuda10.0
+        apt-get install libnvinfer4=4.1.2-1+cuda9.0
 
 # From here Opencv
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -145,8 +145,8 @@ RUN	mkdir /opencv/build && \
 		-D WITH_CUDA=ON \
 		-D CUDA_FAST_MATH=ON \
 		-D WITH_CUBLAS=ON \
-		-D CUDA_ARCH_BIN=7.5 \
-		-D CUDA_TOOLKIT_ROOT_DIR:PATH=/usr/local/cuda-10.0 \
+		-D CUDA_ARCH_BIN=6.1 7.5 \
+		-D CUDA_TOOLKIT_ROOT_DIR:PATH=/usr/local/cuda-9.0 \
 		.. && \
 	export NUMPROC=$(nproc --all) && \
 	make -j$NUMPROC && \
@@ -156,9 +156,9 @@ RUN	mkdir /opencv/build && \
 	rm /opencv -r 
 
 # Install TensorFlow GPU version.
-ADD ./cuda10.0-cudnn7.4-nccl2.3-arch7.5/cuda10/ /tmp/
-RUN pip3 --no-cache-dir install /tmp/tensorflow-1.12.0-cp35-cp35m-linux_x86_64.whl && \
-    pip --no-cache-dir install /tmp/tensorflow-1.12.0-cp27-cp27mu-linux_x86_64.whl && \
+ADD ./cuda9.0-cudnn7.0-nccl2.2-arch6.1/ /tmp/
+RUN pip3 --no-cache-dir install /tmp/tensorflow-1.10.1-cp35-cp35m-linux_x86_64.whl && \
+    pip --no-cache-dir install /tmp/tensorflow-1.10.1-cp27-cp27mu-linux_x86_64.whl && \
     rm -rf /tmp
 
 # RUN ln -s -f /usr/bin/python3 /usr/bin/python#
