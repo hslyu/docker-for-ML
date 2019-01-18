@@ -12,12 +12,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # apt-utils install
 		apt-utils \
         build-essential \
-        cuda-command-line-tools-9-0 \
-        cuda-cublas-9-0 \
-        cuda-cufft-9-0 \
-        cuda-curand-9-0 \
-        cuda-cusolver-9-0 \
-        cuda-cusparse-9-0 \
+        cuda-command-line-tools-10-0 \
+        cuda-cublas-10-0 \
+        cuda-cufft-10-0 \
+        cuda-curand-10-0 \
+        cuda-cusolver-10-0 \
+        cuda-cusparse-10-0 \
         curl \
         libcudnn7=7.4.2.24-1+cuda10.0 \
         libnccl2=2.3.7-1+cuda10.0 \
