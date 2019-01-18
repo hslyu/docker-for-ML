@@ -12,15 +12,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # apt-utils install
 		apt-utils \
         build-essential \
-        cuda-command-line-tools-10-0 \
-        cuda-cublas-10-0 \
-        cuda-cufft-10-0 \
-        cuda-curand-10-0 \
-        cuda-cusolver-10-0 \
-        cuda-cusparse-10-0 \
+        cuda-command-line-tools-9-0 \
+        cuda-cublas-9-0 \
+        cuda-cufft-9-0 \
+        cuda-curand-9-0 \
+        cuda-cusolver-9-0 \
+        cuda-cusparse-9-0 \
         curl \
-        libcudnn7=7.4.2.24-1+cuda10.0 \
-        libnccl2=2.3.7-1+cuda10.0 \
+        libcudnn7=7.2.1.38-1+cuda9.0 \
+        libnccl2=2.2.13-1+cuda9.0 \
         libfreetype6-dev \
         libhdf5-serial-dev \
         libpng12-dev \
@@ -38,45 +38,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && \
-        apt-get install nvinfer-runtime-trt-repo-ubuntu1604-5.0.2-ga-cuda10.0 && \
+        apt-get install nvinfer-runtime-trt-repo-ubuntu1604-4.0.1-ga-cuda9.0 && \
         apt-get update && \
-        apt-get install libnvinfer5=5.0.2-1+cuda10.0
-
-# From here Opencv
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		libopencv-dev \
-		checkinstall \
-		cmake \
-		pkg-config \
-		yasm \
-		libtiff5-dev \
-		libjpeg-dev \
-		libjasper-dev \
-		libavcodec-dev \
-		libavformat-dev \
-		libswscale-dev \
-		libdc1394-22-dev \
-		libxine2-dev \
-		libgstreamer0.10-dev \
-		libgstreamer-plugins-base0.10-dev \
-		qt5-default \
-		libv4l-dev \
-		libtbb-dev \
-		libgtk2.0-dev \
-		libfaac-dev \  
-		libmp3lame-dev \
-		libopencore-amrnb-dev \
-		libopencore-amrwb-dev \
-		libtheora-dev \
-		libvorbis-dev \
-		libxvidcore-dev \
-		x264 \
-		v4l-utils \
-		ffmpeg \
-		frei0r-plugins \
-        && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+        apt-get install libnvinfer4=4.1.2-1+cuda9.0
 
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
@@ -113,6 +77,42 @@ RUN pip3 --no-cache-dir install \
         pandas \
         scipy \
         sklearn 
+
+# From here Opencv
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		libopencv-dev \
+		checkinstall \
+		cmake \
+		pkg-config \
+		yasm \
+		libtiff5-dev \
+		libjpeg-dev \
+		libjasper-dev \
+		libavcodec-dev \
+		libavformat-dev \
+		libswscale-dev \
+		libdc1394-22-dev \
+		libxine2-dev \
+		libgstreamer0.10-dev \
+		libgstreamer-plugins-base0.10-dev \
+		qt5-default \
+		libv4l-dev \
+		libtbb-dev \
+		libgtk2.0-dev \
+		libfaac-dev \  
+		libmp3lame-dev \
+		libopencore-amrnb-dev \
+		libopencore-amrwb-dev \
+		libtheora-dev \
+		libvorbis-dev \
+		libxvidcore-dev \
+		x264 \
+		v4l-utils \
+		ffmpeg \
+		frei0r-plugins \
+        && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install Opencv3.4 by compiling
 ADD ./opencv /opencv
@@ -156,9 +156,9 @@ RUN	mkdir /opencv/build && \
 	rm /opencv -r 
 
 # Install TensorFlow GPU version.
-ADD ./cuda10.0-cudnn7.4-nccl2.3-arch7.5/cuda10/ /tmp/
-RUN pip3 --no-cache-dir install /tmp/tensorflow-1.12.0-cp35-cp35m-linux_x86_64.whl && \
-    pip --no-cache-dir install /tmp/tensorflow-1.12.0-cp27-cp27mu-linux_x86_64.whl && \
+ADD ./cuda9.0-cudnn7.0-nccl2.2-arch6.1/ /tmp/
+RUN pip3 --no-cache-dir install /tmp/tensorflow-1.10.1-cp35-cp35m-linux_x86_64.whl && \
+    pip --no-cache-dir install /tmp/tensorflow-1.10.1-cp27-cp27mu-linux_x86_64.whl && \
     rm -rf /tmp
 
 # RUN ln -s -f /usr/bin/python3 /usr/bin/python#
