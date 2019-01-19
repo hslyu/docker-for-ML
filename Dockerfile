@@ -156,9 +156,9 @@ RUN	mkdir /opencv/build && \
 	rm /opencv -r 
 
 # Install TensorFlow GPU version.
-ADD ./cuda9.0-cudnn7.0-nccl2.2-arch6.1/ /tmp/
-RUN pip3 --no-cache-dir install /tmp/tensorflow-1.10.1-cp35-cp35m-linux_x86_64.whl && \
-    pip --no-cache-dir install /tmp/tensorflow-1.10.1-cp27-cp27mu-linux_x86_64.whl && \
+ADD ./cuda10.0-cudnn7.4-nccl2.3-arch6.1/ /tmp/
+RUN pip3 --no-cache-dir install /tmp/tensorflow-1.12.0-cp35-cp35m-linux_x86_64.whl && \
+    pip --no-cache-dir install /tmp/tensorflow-1.12.0-cp27-cp27mu-linux_x86_64.whl && \
     rm -rf /tmp
 
 # RUN ln -s -f /usr/bin/python3 /usr/bin/python#
