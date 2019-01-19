@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         cuda-cusparse-9-0 \
         curl \
         libcudnn7=7.0.5.15-1+cuda9.0 \
-        libnccl2=2.2.13-1+cuda9.0 \
+        libnccl2=2.3.7-1+cuda9.0 \
         libfreetype6-dev \
         libhdf5-serial-dev \
         libpng12-dev \
