@@ -114,6 +114,12 @@ RUN pip3 --no-cache-dir install \
         scipy \
         sklearn 
 
+# Install TensorFlow GPU version.
+ADD ./cuda9.0-cudnn7.0-nccl2.2-arch6.1/ /tmp/
+RUN pip3 --no-cache-dir install /tmp/tensorflow-1.7.1-cp35-cp35m-linux_x86_64.whl && \
+    pip --no-cache-dir install /tmp/tensorflow-1.7.1-cp27-cp27mu-linux_x86_64.whl && \
+    rm -rf /tmp
+
 # Install Opencv3.4 by compiling
 ADD ./opencv /opencv
 RUN	mkdir /opencv/build && \
@@ -155,12 +161,15 @@ RUN	mkdir /opencv/build && \
 # Remove mounted directory
 	rm /opencv -r 
 
+<<<<<<< HEAD
 # Install TensorFlow GPU version.
 ADD ./cuda9.0-cudnn7.0-nccl2.2-arch6.1/ /tmp/
 RUN pip3 --no-cache-dir install /tmp/tensorflow-1.7.1-cp35-cp35m-linux_x86_64.whl && \
     pip --no-cache-dir install /tmp/tensorflow-1.7.1-cp27-cp27mu-linux_x86_64.whl && \
     rm -rf /tmp
 
+=======
+>>>>>>> 97077508c5453bc0b97cb2356aa6e5150ec6685e
 # RUN ln -s -f /usr/bin/python3 /usr/bin/python#
 
 # Set up our notebook config.
