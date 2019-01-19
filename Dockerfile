@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         cuda-cusparse-9-0 \
         curl \
         libcudnn7=7.2.1.38-1+cuda9.0 \
-        libnccl2=2.2.13-1+cuda9.0 \
+        libnccl2=2.3.7-1+cuda9.0 \
         libfreetype6-dev \
         libhdf5-serial-dev \
         libpng12-dev \
@@ -157,8 +157,8 @@ RUN	mkdir /opencv/build && \
 
 # Install TensorFlow GPU version.
 ADD ./cuda9.0-cudnn7.0-nccl2.2-arch6.1/ /tmp/
-RUN pip3 --no-cache-dir install /tmp/tensorflow-1.10.1-cp35-cp35m-linux_x86_64.whl && \
-    pip --no-cache-dir install /tmp/tensorflow-1.10.1-cp27-cp27mu-linux_x86_64.whl && \
+RUN pip3 --no-cache-dir install /tmp/tensorflow-1.7.1-cp35-cp35m-linux_x86_64.whl && \
+    pip --no-cache-dir install /tmp/tensorflow-1.7.1-cp27-cp27mu-linux_x86_64.whl && \
     rm -rf /tmp
 
 # RUN ln -s -f /usr/bin/python3 /usr/bin/python#
