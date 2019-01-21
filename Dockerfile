@@ -42,6 +42,12 @@ RUN apt-get update && \
         apt-get update && \
         apt-get install libnvinfer5=5.0.0-1+cuda10.0
 
+# Install cudnn
+ADD ./cuda /cuda
+RUN mv /cuda/include/cudnn.h /usr/local/cuda/include/ && \
+	mv /cuda/lib64/* /usr/local/cuda/lib64/ && \
+	rm -r cuda
+
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
     python3 get-pip.py && \
