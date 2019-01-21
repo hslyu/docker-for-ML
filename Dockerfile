@@ -42,6 +42,12 @@ RUN apt-get update && \
         apt-get update && \
         apt-get install libnvinfer4=4.1.2-1+cuda9.0
 
+# Install cudnn
+ADD ./cuda /cuda
+RUN mv /cuda/include/cudnn.h /usr/local/cuda/include/ && \
+    mv /cuda/lib64/* /usr/local/cuda/lib64/ && \
+    rm -r cuda
+
 # From here Opencv
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		libopencv-dev \
@@ -156,10 +162,10 @@ RUN	mkdir /opencv/build && \
 	rm /opencv -r 
 
 # Install TensorFlow GPU version.
-ADD ./cuda9.0-cudnn7.0-nccl2.2-arch6.1/ /tmp/
-RUN pip3 --no-cache-dir install /tmp/tensorflow-1.12.0-cp35-cp35m-linux_x86_64.whl && \
-    pip --no-cache-dir install /tmp/tensorflow-1.12.0-cp27-cp27mu-linux_x86_64.whl && \
-    rm -rf /tmp
+ADD ./cuda9.0-cudnn7.0-nccl2.2-arch6.1/ /tf/
+RUN pip3 --no-cache-dir install /tf/tensorflow-1.12.0-cp35-cp35m-linux_x86_64.whl && \
+    pip --no-cache-dir install /tf/tensorflow-1.12.0-cp27-cp27mu-linux_x86_64.whl && \
+    rm -rf /tf
 
 # RUN ln -s -f /usr/bin/python3 /usr/bin/python#
 
