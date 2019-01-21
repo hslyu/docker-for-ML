@@ -42,6 +42,12 @@ RUN apt-get update && \
         apt-get update && \
         apt-get install libnvinfer4=4.1.2-1+cuda9.0
 
+# Install cudnn
+ADD ./cuda /cuda
+RUN mv /cuda/include/cudnn.h /usr/local/cuda/include/ && \
+    mv /cuda/lib64/* /usr/local/cuda/lib64/ && \
+    rm -r cuda
+
 # From here Opencv
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		libopencv-dev \
