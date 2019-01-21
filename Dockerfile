@@ -182,7 +182,7 @@ COPY run_jupyter.sh /
 
 # For CUDA profiling, TensorFlow requires CUPTI.
 ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
-ENV PATH /usr/local/cuda/bin:$LD_LIBRARY_PATH
+ENV PATH /usr/local/cuda/bin:$PATH
 
 # TensorBoard
 EXPOSE 6006
