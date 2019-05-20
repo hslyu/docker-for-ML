@@ -75,16 +75,35 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
 #    python -m ipykernel.kernelspec
 
 # Install python3 ML modules
-#RUN pip3 --no-cache-dir install \
-#        Pillow \
-#        h5py \
+RUN pip3 --no-cache-dir install \
+        Pillow \
+        h5py \
 #        keras_applications \
 #        keras_preprocessing \
-#        matplotlib \
-#        numpy \
-#        pandas \
+        matplotlib \
+        numpy \
+        pandas \
 #        scipy \
 #        sklearn 
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libgirepository1.0-dev \
+        gcc \
+        libcairo2-dev \
+        pkg-config \
+        python3-dev \
+        gir1.2-gtk-3.0 \
+        && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* \
+    && \
+    pip3 --no-cache-dir install \
+        pycario \
+        pyGObejct
+        
+
 
 # From here Opencv
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -129,18 +148,19 @@ RUN	mkdir /opencv/build && \
 	cd /opencv/build && \
 	cmake -D CMAKE_BUILD_TYPE=RELEASE \
 # Build python3 cv2
-#		-D BUILD_NEW_PYTHON_SUPPORT=ON \
-#		-D BUILD_opencv_python3=ON \
-#		-D HAVE_opencv_python3=ON \
-		-D PYTHON2_EXECUTABLE=/usr/bin/python \
-		-D PYTHON2_INCLUDE_DIR=/usr/include/python2.7 \
-		-D PYTHON2_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython2.7.so \
-		-D PYTHON2_NUMPY_INCLUDE_DIRS=/usr/local/lib/python2.7/dist-packages/numpy/core/include \
-#		-D PYTHON3_EXECUTABLE=/usr/bin/python3 \
-#		-D PYTHON3_INCLUDE_DIR=/usr/include/python3.5 \
-#		-D PYTHON3_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so \
-#		-D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.5/dist-packages/numpy/core/include \
+		-D BUILD_NEW_PYTHON_SUPPORT=ON \
+		-D BUILD_opencv_python3=ON \
+		-D HAVE_opencv_python3=ON \
+#		-D PYTHON2_EXECUTABLE=/usr/bin/python \
+#		-D PYTHON2_INCLUDE_DIR=/usr/include/python2.7 \
+#		-D PYTHON2_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython2.7.so \
+#		-D PYTHON2_NUMPY_INCLUDE_DIRS=/usr/local/lib/python2.7/dist-packages/numpy/core/include \
+		-D PYTHON3_EXECUTABLE=/usr/bin/python3 \
+		-D PYTHON3_INCLUDE_DIR=/usr/include/python3.5 \
+		-D PYTHON3_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so \
+		-D PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.5/dist-packages/numpy/core/include \
 #		-D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python2.7 \
+    	-D PYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3.5 \
 # Not build java
         -D BUILD_opencv_java=OFF \
 		-D WITH_TBB=ON \
@@ -168,11 +188,6 @@ ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:$LD_LIBRARY_PATH
 ENV PATH /usr/local/cuda/bin:$PATH
 
 # Create a non-root user and switch to it
-RUN adduser --disabled-password --gecos '' --shell /bin/bash aislab \
+RUN adduser --disabled-password --gecos '' --shell /bin/bash aislab
 RUN echo "aislab ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/90-aislab
 USER aislab
-
-# All users can use /home/user as their home directory
-ENV HOME=/home/aislab
-RUN chmod 766 /home/aislab
-
