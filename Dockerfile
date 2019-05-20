@@ -7,10 +7,6 @@ ADD sources.list /sources.list
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.old && \
 	mv /sources.list /etc/apt/sources.list
 
-# Create a working directory
-RUN mkdir /app
-WORKDIR /app
-
 # Pick up some dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
 # apt-utils install
