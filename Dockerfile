@@ -83,8 +83,6 @@ RUN pip3 --no-cache-dir install \
 #        sklearn 
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
         libgirepository1.0-dev \
         gcc \
         libcairo2-dev \
@@ -93,13 +91,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gir1.2-gtk-3.0 \
         && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* \
-    && \
-    pip3 --no-cache-dir install \
-        pycario \
-        pyGObejct
-        
-
+    rm -rf /var/lib/apt/lists/* 
 
 # From here Opencv
 RUN apt-get update && apt-get install -y --no-install-recommends \
