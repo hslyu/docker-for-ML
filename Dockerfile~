@@ -83,8 +83,6 @@ RUN pip3 --no-cache-dir install \
 #        sklearn 
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
         libgirepository1.0-dev \
         gcc \
         libcairo2-dev \

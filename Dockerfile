@@ -78,7 +78,7 @@ RUN pip3 --no-cache-dir install \
 #        keras_preprocessing \
         matplotlib \
         numpy \
-        pandas \
+        pandas 
 #        scipy \
 #        sklearn 
 
