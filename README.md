@@ -1,4 +1,4 @@
-# docker-recipe-for-ML
+# docker-for-ML
 Docker image build recipe with various machine learning libraries, including tensorflow, pytorch and opencv. This repository is tested on ubuntu 18.04 with NVIDIA Geforce 1080TI and NVIDIA RTX 2080TI.
 
 # What you need to do first
