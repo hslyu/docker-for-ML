@@ -7,8 +7,8 @@ Docker image build recipe with various machine learning libraries, including ten
 3. Clone this repository and enter into the directory.
 ~~~
 git clone https://github.com/hslyu/docker-for-ML
-cd ./docker-recipe-for-ML
+cd ./docker-for-ML
 ~~~
-4. In the **docker-recipe-for-ML** directory, clone [tensorflow github](https://github.com/tensorflow/tensorflow) and [opencv github](https://github.com/opencv/opencv).
+4. In the **docker-for-ML** directory, clone [tensorflow github](https://github.com/tensorflow/tensorflow) and [opencv github](https://github.com/opencv/opencv).
 5. Go to the tensorflow directory and checkout to the version you want to build.
 6. Go to the opencv directory and checkout to the version you want to build.
