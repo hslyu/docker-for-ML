@@ -6,6 +6,7 @@ Docker image build recipe with various machine learning libraries, including ten
 2. Install nvidia-docker according to the [nvidia-docker github](https://github.com/NVIDIA/nvidia-docker).
 3. Clone this repository and enter into the directory.
 ~~~
+git clone https://github.com/hslyu/docker-for-ML
 cd ./docker-recipe-for-ML
 ~~~
 4. In the **docker-recipe-for-ML** directory, clone [tensorflow github](https://github.com/tensorflow/tensorflow) and [opencv github](https://github.com/opencv/opencv).
