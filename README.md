@@ -1,7 +1,7 @@
 # docker-for-ML
 Docker image build recipe with various machine learning libraries, including tensorflow, pytorch and opencv. This repository is tested on ubuntu 18.04 with NVIDIA Geforce 1080TI and NVIDIA RTX 2080TI, and NVIDA driver>=430.50.
 
-# What you need to do first
+# How to build an image using this repo?
 1. Install docker according to the [docker docs](https://docs.docker.com/install/).
 2. Install nvidia-docker according to the [nvidia-docker github](https://github.com/NVIDIA/nvidia-docker).
 3. Clone this repository and enter into the directory.
@@ -19,3 +19,10 @@ cd ./docker-for-ML
   docker build -t <image name>:<tag> --build-arg USE_PYTHON_3_NOT_2=1 .
   ~~~
   * USE_PYTHON_3_NOT_2 will install python3 as default. If you want to install python2, remove the option.
+
+# How to build an image using this repo?
+The file pip.conf and sources.list may change the pip and the apt from default server to mirror server, which is faster than default specifically in Korea. If you don't need this option, comment out below lines in Dockerfile
+~~~
+ADD pip.conf /root/.pip/pip.conf
+ADD sources.list /etc/apt/sources.list
+~~~
