@@ -26,3 +26,11 @@ The file pip.conf and sources.list may change the pip and the apt from default s
 ADD pip.conf /root/.pip/pip.conf
 ADD sources.list /etc/apt/sources.list
 ~~~
+
+# What should I do after building the image?
+The built image is the base of ML developing environment. After running a container from this image, install/build tensorflow, pytorch, opencv, and any other libraries whatever you want.
+
+For novice,
+~~~
+pip install tensorflow-gpu==<version you want to install, optional>
+~~~
