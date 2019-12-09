@@ -10,6 +10,7 @@ git clone https://github.com/hslyu/docker-for-ML
 cd ./docker-for-ML
 ~~~
 4. Download bazel linux installer from [here](https://github.com/bazelbuild/bazel/releases).
+Warning: You may fail to build tensorflow according to the bazel version. Please download bazel version compatible with tensorflow version you want to install according to [tested build configuration](https://www.tensorflow.org/install/source?hl=ko#tested_build_configurations).
 5. Rename the downloaded installer "bazel-<bazel-version>-installer-<os>-<arch>.sh" as **installer.sh**, and then move the installer into docker-for-ML.
   ~~~
   mv bazel-<bazel-version>-installer-<os>-<arch>.sh <path to docker-for-ML>/installer.sh
