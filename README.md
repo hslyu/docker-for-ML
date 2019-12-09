@@ -34,3 +34,16 @@ For novice,
 ~~~
 pip install tensorflow-gpu==<version you want to install, optional>
 ~~~
+
+# If you want to build opencv from the image,
+You can build using the **cv2.Dockerfile**.
+To use the dockerfile, **you should clone [my opencv forked repo](https://github.com/hslyu/opencv)".** I resolved several errors that might happen caused by opencv and cuda10 compatibility(opencv 3.4 version is made before CUDA10 is developed.).
+I have changed opencv/cmake/FindCUDA.cmake, and modules\cudev\include\opencv2\cudev\common.hpp. You can check it from [here](https://github.com/hslyu/opencv/commit/42b112baa2d140b50e1cfb86aa232e6f9b8eb39d#diff-ded5d5561a9adad3248a896150d8aa73) and [here](https://github.com/hslyu/opencv/commit/7467c781713d284ba1e149842c1904cd93ac85e8#diff-72639e256fec58f913bce6c5a43cd122)
+~~~
+In the docker-for-ML directory,
+git clone https://github.com/hslyu/opencv
+cd opencv
+git checkout 3.4
+cd ..
+docker build <options you want> -f cv2.Dockerfile .
+~~~
